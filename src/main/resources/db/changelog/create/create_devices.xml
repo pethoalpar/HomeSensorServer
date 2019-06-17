@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet author="pethoalpar" id="tbl_devices" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not> <tableExists tableName="devices" /> </not>
+        </preConditions>
+        <createTable tableName="devices">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)"/>
+            <column name="sensor_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="alpar.petho" id="fk_user_sensor_type_id_1">
+    	<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists foreignKeyName="fk_user_sensor_type_id_1" />
+			</not>
+		</preConditions>
+        <addForeignKeyConstraint baseColumnNames="sensor_type_id" baseTableName="devices" constraintName="fk_user_sensor_type_id_1" onDelete="RESTRICT" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sensor_types"/>
+    </changeSet>
+
+</databaseChangeLog>

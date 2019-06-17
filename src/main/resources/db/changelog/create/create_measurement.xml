@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet author="pethoalpar" id="tbl_measurements" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not> <tableExists tableName="measurements" /> </not>
+        </preConditions>
+        <createTable tableName="measurements">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_id" type="BIGINT"/>
+            <column name="unit_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="alpar.petho" id="fk_measurement_device_id_1">
+    	<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists foreignKeyName="fk_measurement_device_id_1" />
+			</not>
+		</preConditions>
+        <addForeignKeyConstraint baseColumnNames="device_id" baseTableName="measurements" constraintName="fk_measurement_device_id_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="devices"/>
+    </changeSet>
+    
+    <changeSet author="alpar.petho" id="fk_measurement_unit_id_1">
+    	<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists foreignKeyName="fk_measurement_unit_id_1" />
+			</not>
+		</preConditions>
+        <addForeignKeyConstraint baseColumnNames="unit_id" baseTableName="measurements" constraintName="fk_measurement_unit_id_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="units"/>
+    </changeSet>
+
+</databaseChangeLog>

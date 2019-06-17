@@ -9,9 +9,9 @@ spring:
     change-log: classpath:/db/changelog/db.changelog-master.xml
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.100.91:3307/homesensor?autoReconnect=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: pethoalpar
-    password: password11
+    url: jdbc:mysql://localhost:3306/home_sensor?autoReconnect=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: user
+    password: user
   jpa:
     show-sql: true
     database: mysql
