@@ -16,6 +16,10 @@
             <column name="role_name" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="created_by" type="varchar(255)"/>
+            <column name="modified_at" type="DATETIME"/>
+            <column name="modified_by" type="varchar(255)"/>
         </createTable>
     </changeSet>
 
