@@ -21,3 +21,17 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    
+logging:
+  level:
+    root: debug
+        
